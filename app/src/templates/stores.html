@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+<div class="content">
+    {% if tasks|length < 1 %}
+    <h4 style="text-align: center">There are no stores near the user</h4>
+    {% else %}
+    <form action = "/Stores" method = "POST">
+    <label for="categories">Choose a category:</label>
+    <select name = "categories">
+        {%for x in tasks[-1].categories%}
+        <option value = '{{x}}&{{tasks[-2].id}}' >{{x}}</option>
+        {% endfor %}
+
+    </select>
+    <input type="submit" value = "filter">
+    </form>
+    <table>
+        <tr>
+            <th>NAME</th>
+            <th>RATING</th>
+            <th>STREET</th>
+            <th>CITY</th>
+            <th>STATE</th>
+            <th>POSTAL</th>
+            <th>OPEN</th>
+            <th>CATEGORIES</th>
+            
+        </tr>
+
+        
+        {% for task in tasks %}
+            <tr>
+                <td>{{task.name}}</td>
+                <td>{{task.rating}}</td>
+                <td>{{task.street}}</td>
+                <td>{{task.city}}</td>
+                <td>{{task.state}}</td>
+                <td>{{task.postal}}</td>
+                <td>{{task.Open}}</td>
+                <td>{{task.cate}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+<div class="content">
+    
+
+    <div class="form">
+        <form action="/findusers" method="POST">
+            <input type="search" name="keyword" id="content">
+        </form>
+    </div>
+{% if tasks|length < 1 %}
+    <h4>Enter the keywords to search for users</h4>
+    {% else %}
+    <table>
+        <tr>
+            <th>User_names found in Twitter</th>
+
+        </tr>
+        {% for task in tasks %}
+            <tr>
+                <td><a href="/Stores?id={{task.id}}"> {{ task.name }}</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+</div>
+{% endblock %}
